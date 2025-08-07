@@ -39,13 +39,20 @@
                     onclick={handleReset} 
                     class="slds-m-right_small">
                 </lightning-button>
-
+                <lightning-button 
+                    variant="warning" 
+                    label="refresh" 
+                    title="Calculate Button" 
+                   onclick={refreshLoanDetails}
+                    class="slds-m-right_small">
+                </lightning-button>
                 <lightning-button 
                     variant="brand" 
                     label="Calculate" 
                     title="Calculate Button" 
                     onclick={handleCalculate}>
                 </lightning-button>
+                
             </div>
 
             <template lwc:if={showSchedule}>
