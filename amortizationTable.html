@@ -1,0 +1,64 @@
+<template>
+    <lightning-card variant="Narrow" title="Amortization Table" icon-name="standard:agent_session">
+        <div class="slds-p-around_medium">
+            <div class="slds-grid slds-wrap slds-gutters">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                    <lightning-input 
+                        type="number" 
+                        name="pricipalAmount" 
+                        label="Enter Principal Amount" 
+                        value={P} 
+                        onchange={handlePrincipal}>
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                    <lightning-input 
+                        type="number" 
+                        name="Interest" 
+                        label="Annual Interest Rate (%)" 
+                        value={R} 
+                        onchange={handleInterestRate}>
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                    <lightning-input 
+                        type="number" 
+                        name="Duration" 
+                        label="Duration (in months)" 
+                        value={N} 
+                        onchange={handleDuration}>
+                    </lightning-input>
+                </div>
+            </div>
+
+            <div class="slds-m-top_medium">
+                <lightning-button 
+                    variant="destructive" 
+                    label="Reset" 
+                    title="Reset Button" 
+                    onclick={handleReset} 
+                    class="slds-m-right_small">
+                </lightning-button>
+
+                <lightning-button 
+                    variant="brand" 
+                    label="Calculate" 
+                    title="Calculate Button" 
+                    onclick={handleCalculate}>
+                </lightning-button>
+            </div>
+
+            <template lwc:if={showSchedule}>
+                <div class="slds-m-top_large">
+                    <lightning-datatable
+                        key-field="month"
+                        data={data}
+                        columns={columns}
+                        hide-checkbox-column="true"
+                          class="slds-m-top_medium">
+                    </lightning-datatable>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
