@@ -1,0 +1,17 @@
+public with sharing class AmortizationTable {
+    @AuraEnabled(cacheable=true)
+    public static Map<String, Object> getLoanDetails(Id recordId) {
+        Loan_Application__c loan = [
+            SELECT Principal_Amount__c, Interest_Rate__c, Duration_in_months__c
+            FROM Loan_Application__c
+            WHERE Id = :recordId
+            LIMIT 1
+        ];
+
+        return new Map<String, Object>{
+            'principal' => loan.Principal_Amount__c,
+            'interest' => loan.Interest_Rate__c,
+            'duration' => loan.Duration_in_months__c
+        };
+    }
+}
